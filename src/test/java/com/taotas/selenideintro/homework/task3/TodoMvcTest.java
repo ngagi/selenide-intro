@@ -1,6 +1,6 @@
 package com.taotas.selenideintro.homework.task3;
 
-import com.taotas.selenideintro.homework.task3.xpathutils.X;
+import common.xpathutils.X;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
@@ -15,14 +15,17 @@ public class TodoMvcTest {
         element(byXpath("//*[@id='new-todo']")).setValue("a").pressEnter();
         element(byXpath("//*[@id='new-todo']")).setValue("b").pressEnter();
         element(byXpath("//*[@id='new-todo']")).setValue("c").pressEnter();
-        elements(byXpath("//*[@id='todo-list']/li")).shouldHave(exactTexts("a", "b", "c"));
+        elements(byXpath("//*[@id='todo-list']/li"))
+                .shouldHave(exactTexts("a", "b", "c"));
 
         element(byXpath("//*[@id='todo-list']/li[.//text()='b']//*" +
                 "[" + X.hasCssClass("toggle") + "]")).click();
 
         elements(byXpath("//*[@id='todo-list']/li" +
-                "[" + X.hasCssClass("completed") + "]")).shouldHave(exactTexts("b"));
+                "[" + X.hasCssClass("completed") + "]"))
+                .shouldHave(exactTexts("b"));
         elements(byXpath("//*[@id='todo-list']/li" +
-                "[not(" + X.hasCssClass("completed") + ")]")).shouldHave(exactTexts("a", "c"));
+                "[not(" + X.hasCssClass("completed") + ")]"))
+                .shouldHave(exactTexts("a", "c"));
     }
 }
