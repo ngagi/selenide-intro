@@ -1,6 +1,6 @@
 package com.taotas.selenideintro.homework.task3;
 
-import common.xpathutils.X;
+import com.taotas.selenideintro.common.xpathutils.X;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
@@ -19,13 +19,14 @@ public class TodoMvcTest {
                 .shouldHave(exactTexts("a", "b", "c"));
 
         element(byXpath("//*[@id='todo-list']/li[.//text()='b']//*" +
-                "[" + X.hasCssClass("toggle") + "]")).click();
+                "[" + X.havingCssClass("toggle") + "]"))
+                .click();
 
         elements(byXpath("//*[@id='todo-list']/li" +
-                "[" + X.hasCssClass("completed") + "]"))
+                "[" + X.havingCssClass("completed") + "]"))
                 .shouldHave(exactTexts("b"));
         elements(byXpath("//*[@id='todo-list']/li" +
-                "[not(" + X.hasCssClass("completed") + ")]"))
+                "[not(" + X.havingCssClass("completed") + ")]"))
                 .shouldHave(exactTexts("a", "c"));
     }
 }
